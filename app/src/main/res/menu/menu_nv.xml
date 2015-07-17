@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".MainActivity">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nv_item_1"
+            android:checked="true"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/nv_item_1"/>
+        <item
+            android:id="@+id/nv_item_2"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/nv_item_2"/>
+        <item
+            android:id="@+id/nv_item_3"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/nv_item_3"/>
+        <item
+            android:id="@+id/nv_item_4"
+            android:icon="@mipmap/ic_launcher"
+            android:title="@string/nv_item_4"/>
+    </group>
+
+</menu>

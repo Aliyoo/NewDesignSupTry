@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">NewDesignSupTry</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="nv_header">Design Header</string>
+    <string name="nv_item_1">First Nav. Item</string>
+    <string name="nv_item_2">Second Nav. Item</string>
+    <string name="nv_item_3">Third Nav. Item</string>
+    <string name="nv_item_4">4th Navigation Item</string>
+</resources>
