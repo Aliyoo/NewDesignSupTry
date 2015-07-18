@@ -5,7 +5,6 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nv_item_1"
-            android:checked="true"
             android:icon="@mipmap/ic_launcher"
             android:title="@string/nv_item_1"/>
         <item
@@ -13,13 +12,21 @@
             android:icon="@mipmap/ic_launcher"
             android:title="@string/nv_item_2"/>
         <item
-            android:id="@+id/nv_item_3"
+            android:id="@+id/nv_item_with_sub"
             android:icon="@mipmap/ic_launcher"
-            android:title="@string/nv_item_3"/>
-        <item
-            android:id="@+id/nv_item_4"
-            android:icon="@mipmap/ic_launcher"
-            android:title="@string/nv_item_4"/>
+            android:title="@string/nv_menu_item">
+            <menu>
+                <item
+                    android:id="@+id/sub_nv_item1"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="@string/sub_nv_item1"/>
+                <item
+                    android:id="@+id/sub_nv_item12"
+                    android:icon="@mipmap/ic_launcher"
+                    android:title="@string/sub_nv_item2"/>
+
+            </menu>
+        </item>
     </group>
 
 </menu>

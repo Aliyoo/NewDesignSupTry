@@ -7,5 +7,10 @@
     <string name="nv_item_1">First Nav. Item</string>
     <string name="nv_item_2">Second Nav. Item</string>
     <string name="nv_item_3">Third Nav. Item</string>
-    <string name="nv_item_4">4th Navigation Item</string>
+    <string name="nv_menu_item">Navigation Item with sub-menu</string>
+    <string name="sub_nv_item1">Sub nav. item1</string>
+    <string name="sub_nv_item2">Sub nav. item2</string>
+    <string name="nv_item_run">Nav. item-Run add</string>
+    <string name="nv_sub_item_run">Nav. SubMenu item-Run add</string>
+
 </resources>
