@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_with_main);
 
-        setupToobBar();
+        setupToolBar();
         initNavigationDrawer();
         initMainPage();
 
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    protected void setupToobBar() {
+    protected void setupToolBar() {
 //        利用Toolbar添加DrawerToggle
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
         return mDrawer != null && mDrawer.isDrawerOpen(GravityCompat.START);
     }
 
-    //    基本菜单项
+//    基本菜单项
   /*  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
