@@ -10,9 +10,11 @@ import android.support.design.widget.TextInputLayout;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -21,13 +23,14 @@ public class MainActivity extends AppCompatActivity {
     //        获取DrawerLayout和直接获取NavigationView布局
     DrawerLayout mDrawer;
     NavigationView nvContent;
+    protected ActionBarDrawerToggle mDrawerToggle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.drawer_with_main);
 
-        setupToolBar();
+        setupToolbar();
         initNavigationDrawer();
         initMainPage();
 
@@ -44,10 +47,6 @@ public class MainActivity extends AppCompatActivity {
 /*//        获取NavigationView的FrameLayout布局，**不能达到滑出效果**
         final FrameLayout famNvContent = (FrameLayout) findViewById(R.id.frame_nv_content);*/
 
-/*//        动态添加Item和SubMenu item
-        final SubMenu nvSubMenu  = (SubMenu) findViewById(R.id.nv_item_with_sub);
-        nvSubMenu.add(R.string.nv_sub_item_run);*/
-
 //        在NavigationView的Menu中动态添加Item
         final Menu nvMenu = nvContent.getMenu();
         nvMenu.add(R.string.nv_item_run);
@@ -61,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
                         return true;
                     }
                 });
+        setupToolbarDrawerToggle();
     }
 
     /**
@@ -75,13 +75,27 @@ public class MainActivity extends AppCompatActivity {
         etEmail.setFocusableInTouchMode(true);
         etEmail.setErrorEnabled(true);
         etEmail.setError("Don't input null content");
-//        Tab布局
+
+        setupTabView();
+        setupFloatActionButton();
+    }
+
+    /**
+     * 设置TabLayout界面
+     */
+    protected void setupTabView() {
+        //        Tab布局
         TabLayout tab_design = (TabLayout) findViewById(R.id.tab_design);
         tab_design.addTab(tab_design.newTab().setText("Tab One"));
         tab_design.addTab(tab_design.newTab().setText("Tab Two"));
         tab_design.addTab(tab_design.newTab().setText("Tab Three"));
+    }
 
-//        创建并得到FloatingActionButton
+    /**
+     * 设置FAB（浮动按钮）
+     */
+    protected void setupFloatActionButton() {
+        //        创建并得到FloatingActionButton
         final FloatingActionButton fab;
         fab = (FloatingActionButton) findViewById(R.id.fab_normal);
         final CoordinatorLayout mCoordinator;
@@ -96,8 +110,10 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    protected void setupToolBar() {
-//        利用Toolbar添加DrawerToggle
+    /**
+     * 设置Toolbar代替ActionBar
+     */
+    protected void setupToolbar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -105,6 +121,25 @@ public class MainActivity extends AppCompatActivity {
         assert actionBar != null;
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
+
+    }
+
+    /**
+     * 设置抽屉开关键纽
+     */
+    protected void setupToolbarDrawerToggle() {
+        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer,
+                R.string.drawer_open, R.string.drawer_close) {
+
+            public void onDrawerClosed(View view) {
+                Snackbar.make(view, R.string.drawer_close, Snackbar.LENGTH_SHORT).show();
+            }
+
+            public void onDrawerOpened(View view) {
+                Snackbar.make(view, R.string.drawer_open, Snackbar.LENGTH_SHORT).show();
+            }
+        };
+        mDrawer.setDrawerListener(mDrawerToggle);
     }
 
     /**
@@ -119,13 +154,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    //    判断抽屉是否打开
+//    判断抽屉是否打开
     protected boolean isDrawerOpened() {
         return mDrawer != null && mDrawer.isDrawerOpen(GravityCompat.START);
     }
 
 //    基本菜单项
-  /*  @Override
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu_main, menu);
@@ -135,8 +170,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
-            case R.id.action_settings : break;
+            case android.R.id.home :
+                mDrawer.openDrawer(GravityCompat.START);
+            case R.id.action_settings :
+                return true;
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
 }

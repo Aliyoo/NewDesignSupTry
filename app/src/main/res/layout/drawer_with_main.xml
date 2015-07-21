@@ -8,25 +8,20 @@
     android:fitsSystemWindows="true"
     tools:context=".MainActivity">
 
+    <!-- 包含ToolBar布局-->
+    <include layout="@layout/toolbar_content" />
+
+    <!-- 包含主界面布局-->
     <include layout="@layout/page_main" />
 
-
-    <!-- 加个FLayout暂时控制消失-->
-    <!-- <FrameLayout
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-         android:id="@+id/frame_nv_content"
-         android:visibility="gone">-->
-
+    <!-- DesignLibrary中的NavigationView-->
     <android.support.design.widget.NavigationView
         android:id="@+id/nv_main"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nv_header"
+        app:headerLayout="@layout/header_nv"
         app:menu="@menu/menu_nv" />
-
-    <!--</FrameLayout>-->
 
 </android.support.v4.widget.DrawerLayout>
