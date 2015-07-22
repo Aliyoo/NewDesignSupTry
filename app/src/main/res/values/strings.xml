@@ -1,16 +1,19 @@
 <resources>
     <string name="app_name">NewDesignSupTry</string>
 
-    <string name="hello_world">Hello world!</string>
+    <string name="hello_world">Hello Design!</string>
     <string name="action_settings">Settings</string>
-    <string name="nv_header">Design Header</string>
-    <string name="nv_item_1">First Nav. Item</string>
-    <string name="nv_item_2">Second Nav. Item</string>
-    <string name="nv_item_3">Third Nav. Item</string>
-    <string name="nv_menu_item">Navigation Item with sub-menu</string>
-    <string name="sub_nv_item1">Sub nav. item1</string>
-    <string name="sub_nv_item2">Sub nav. item2</string>
+    <string name="nv_header">Design NavigationView Header</string>
+    <string name="nv_item_1">First Nav. item</string>
+    <string name="nv_item_2">Second Nav. item</string>
+    <string name="nv_item_3">Third Nav. item</string>
+    <string name="nv_menu_item">Nav. SubMenu title</string>
+    <string name="sub_nv_item1">First Nav. SubMenu item</string>
+    <string name="sub_nv_item2">Second Nav. SubMenu item</string>
     <string name="nv_item_run">Nav. item-Run add</string>
     <string name="nv_sub_item_run">Nav. SubMenu item-Run add</string>
+    <string name="nv_sub_menu_title_run">Nav. SubMenu-Run add</string>
+    <string name="drawer_open">Open drawer</string>
+    <string name="drawer_close">Close drawer</string>
 
 </resources>

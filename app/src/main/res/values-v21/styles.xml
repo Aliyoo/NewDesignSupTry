@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Base.Theme.DesignTry" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="android:colorPrimary">#2196F3</item>
+    <style name="AppTheme" parent="Base.Theme.DesignTry">
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:textColorPrimary">@color/material_blue_grey_900</item>
     </style>
 </resources>

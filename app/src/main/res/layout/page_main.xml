@@ -2,16 +2,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent" android:layout_height="match_parent"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingTop="@dimen/abc_action_bar_default_height_material"
     tools:context=".MainActivity"
     android:id="@+id/page">
 
     <TextView android:id="@+id/text_hello"
         android:text="@string/hello_world" android:layout_width="match_parent"
         android:layout_height="wrap_content" android:gravity="center"
+        android:layout_marginTop="12dp"
         android:textSize="32sp" android:textStyle="bold"
         />
     <android.support.design.widget.TextInputLayout
@@ -54,7 +52,8 @@
 
     </android.support.design.widget.TextInputLayout>
 
-    <android.support.design.widget.TabLayout android:id="@+id/tab_design"
+    <android.support.design.widget.TabLayout
+        android:id="@+id/tab_design"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/input_layout_pass"
@@ -62,36 +61,12 @@
         app:tabGravity="fill"
         />
 
+    <include layout="@layout/float_button"/>
+
     <!--未用的Viewpager-->
     <!--<android.support.v4.view.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/input_layout_name"/>-->
-    <!--<FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true">-->
-    <android.support.design.widget.CoordinatorLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/content_coordinator">
-
-        <android.support.design.widget.FloatingActionButton
-            android:id="@+id/fab_normal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|end"
-            app:fabSize="normal"
-            />
-    </android.support.design.widget.CoordinatorLayout>
-    <!--</FrameLayout>-->
-
-    <!--<EditText-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:inputType="textEmailSubject"-->
-    <!--android:inputType=""-->
-    <!--/>-->
 
 </RelativeLayout>
