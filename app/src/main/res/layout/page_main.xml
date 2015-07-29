@@ -4,7 +4,7 @@
     android:layout_width="match_parent" android:layout_height="match_parent"
     android:paddingTop="@dimen/abc_action_bar_default_height_material"
     tools:context=".MainActivity"
-    android:id="@+id/page">
+    android:id="@+id/main_page">
 
     <TextView android:id="@+id/text_hello"
         android:text="@string/hello_world" android:layout_width="match_parent"
@@ -27,23 +27,10 @@
     </android.support.design.widget.TextInputLayout>
 
     <android.support.design.widget.TextInputLayout
-        android:id="@+id/input_layout_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/input_layout_email">
-
-        <EditText android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:inputType="text"
-            android:hint="Name"/>
-
-    </android.support.design.widget.TextInputLayout>
-
-    <android.support.design.widget.TextInputLayout
         android:id="@+id/input_layout_pass"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/input_layout_name">
+        android:layout_below="@id/input_layout_email">
 
         <EditText android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -61,12 +48,12 @@
         app:tabGravity="fill"
         />
 
-    <include layout="@layout/float_button"/>
-
-    <!--未用的Viewpager-->
-    <!--<android.support.v4.view.ViewPager
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/input_layout_name"/>-->
+        android:layout_below="@id/tab_design"/>
+
+    <include layout="@layout/float_button"/>
 
 </RelativeLayout>

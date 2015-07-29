@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="nv_header_bg">#3089</color>
+    <color name="bg_material_red">#e93c67</color>
+    <color name="bg_material_green">#67e975</color>
+    <color name="bg_material_blue">#58ccd9</color>
 </resources>

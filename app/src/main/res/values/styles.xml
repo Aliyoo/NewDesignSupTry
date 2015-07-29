@@ -6,8 +6,8 @@
     </style>
 
     <style name="Base.Theme.DesignTry" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">#21E6F3</item>
-        <item name="colorPrimaryDark">#11A8B5</item>
+        <item name="colorPrimary">#1fe3f3</item>
+        <item name="colorPrimaryDark">#1188a5</item>
         <item name="colorAccent">#E44EFB</item>
         <item name="android:windowBackground">@color/primary_material_light</item>
     </style>
