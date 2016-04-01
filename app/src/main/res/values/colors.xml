@@ -4,4 +4,5 @@
     <color name="bg_material_red">#e93c67</color>
     <color name="bg_material_green">#67e975</color>
     <color name="bg_material_blue">#58ccd9</color>
+    <color name="bg_grey">#aaaaaa</color>
 </resources>

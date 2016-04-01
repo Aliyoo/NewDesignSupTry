@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:padding="8dp"
-        android:text="@string/nv_header"
+        android:text="@string/nav_header_info"
         android:textSize="20sp"
         android:textColor="@color/primary_text_default_material_dark"
         android:background="@color/nv_header_bg"/>

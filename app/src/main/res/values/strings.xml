@@ -1,19 +1,20 @@
 <resources>
-    <string name="app_name">NewDesignSupTry</string>
+    <string name="app_name" translatable="false">NewDesignSupTry</string>
 
-    <string name="hello_world">Hello Design!</string>
-    <string name="action_settings">Settings</string>
-    <string name="nv_header">Design NavigationView Header</string>
-    <string name="nv_item_1">First Nav. item</string>
-    <string name="nv_item_2">Second Nav. item</string>
-    <string name="nv_item_3">Third Nav. item</string>
-    <string name="nv_menu_item">Nav. SubMenu title</string>
-    <string name="sub_nv_item1">First Nav. SubMenu item</string>
-    <string name="sub_nv_item2">Second Nav. SubMenu item</string>
-    <string name="nv_item_run">Nav. item-Run add</string>
-    <string name="nv_sub_item_run">Nav. SubMenu item-Run add</string>
-    <string name="nv_sub_menu_title_run">Nav. SubMenu-Run add</string>
-    <string name="drawer_open">Open drawer</string>
-    <string name="drawer_close">Close drawer</string>
+    <string name="hello_world" translatable="false">Hello Design!</string>
+    <string name="action_settings" translatable="false">Settings</string>
+    <string name="nav_header_info" translatable="false">Design NavigationView Header</string>
+    <string name="nav_item_home" translatable="false">Home</string>
+    <string name="nav_item_scroll" translatable="false">Scroll</string>
+    <!--<string name="nv_item_3">Third Nav. item</string>-->
+    <string name="nav_menu_item" translatable="false">Nav. SubMenu title</string>
+    <string name="sub_nav_item1" translatable="false">First Nav. SubMenu item</string>
+    <string name="sub_nav_item2" translatable="false">Second Nav. SubMenu item</string>
+    <string name="nav_item_run" translatable="false">Nav. item-Run add</string>
+    <string name="nav_sub_item_run" translatable="false">Nav. SubMenu item-Run add</string>
+    <string name="nav_sub_menu_title_run" translatable="false">Nav. SubMenu-Run add</string>
+    <string name="drawer_open" translatable="false">Open drawer</string>
+    <string name="drawer_close" translatable="false">Close drawer</string>
+    <string name="title_activity_scroll_bar" translatable="false">ScrollBarActivity</string>
 
 </resources>

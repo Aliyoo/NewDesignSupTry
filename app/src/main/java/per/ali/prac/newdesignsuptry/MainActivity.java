@@ -1,5 +1,6 @@
 package per.ali.prac.newdesignsuptry;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -15,12 +16,15 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 
 import java.util.ArrayList;
 
@@ -28,55 +32,62 @@ import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
 
-    String Tag = "Tab";
+    private static final String TAG = "Tab";
 
-//     获取DrawerLayout和直接获取NavigationView布局
-    DrawerLayout mDrawer;
-    NavigationView nvContent;
-    ActionBarDrawerToggle mDrawerToggle;
+    //      主界面布局
+    private DrawerLayout mDrawerLayout;
+    private NavigationView navContent;
 
-//    主页面控件
-    TextInputLayout etEmail;
-    TabLayout tabDesign;
-//    private View rootView;
-    ViewPager viewPager;
-    ArrayList<View> viewPagerList = new ArrayList<>();
-    ArrayList<String> titleList = new ArrayList<>();
+    //    主页面控件
+    private TextInputLayout textInputLayoutEmail;
+    private TabLayout tabDesign;
+
+//    数据集合
+    private ArrayList<View> viewPagerList = new ArrayList<>();
+    private ArrayList<String> titleList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_with_drawer);
+        setContentView(R.layout.activity_main_with_drawer);
         ButterKnife.bind(this);
 
-        setupToolbar();
         initNavigationDrawer();
         initMainPage();
 
     }
 
     /**
-     * 初始化抽屉
+     * 初始化侧滑抽屉
      */
     private void initNavigationDrawer() {
 //        获取DrawerLayout和直接获取NavigationView布局
-        mDrawer = (DrawerLayout) findViewById(R.id.ly_drawer);
-        nvContent = (NavigationView) findViewById(R.id.nv_main);
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.ly_drawer);
+        navContent = (NavigationView) findViewById(R.id.nv_main);
 
 //        在NavigationView的Menu中动态添加Item
-        final Menu nvMenu = nvContent.getMenu();
-        nvMenu.add(R.string.nv_item_run);
+        final Menu nvMenu = navContent.getMenu();
+        nvMenu.add(R.string.nav_item_run);
 //        nvMenu.getItem(3).setCheckable(true);
-        nvContent.setNavigationItemSelectedListener(
+
+//        设置导航菜单的项目点击事件
+        navContent.setNavigationItemSelectedListener(
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
                         menuItem.setChecked(true);
-                        mDrawer.closeDrawers();
+                        mDrawerLayout.closeDrawers();
+//                        while (!mDrawerLayout.isDrawerOpen(GravityCompat.START)) {
+                        switch (menuItem.getItemId()) {
+                            case R.id.nav_item_1:
+                                break;
+                            case R.id.nav_item_2:
+                                startActivity(new Intent(MainActivity.this, ScrollBarActivity.class));
+                                break;
+                        }
                         return true;
                     }
                 });
-        setupToolbarDrawerToggle();
     }
 
     /**
@@ -85,16 +96,38 @@ public class MainActivity extends AppCompatActivity {
     private void initMainPage() {
 
 //        获取TextInputLayout
-        etEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
-//        下面前两个属性设置后不会自动聚焦
-        etEmail.setFocusable(true);
-        etEmail.setFocusableInTouchMode(true);
-//        设置错误提示
-        etEmail.setErrorEnabled(true);
-        etEmail.setError("Don't input null content");
+        textInputLayoutEmail = (TextInputLayout) findViewById(R.id.input_layout_email);
+//        下面前两个属性设置后,启动时不会自动聚焦
+        textInputLayoutEmail.setFocusable(true);
+        textInputLayoutEmail.setFocusableInTouchMode(true);
+        textInputLayoutEmail.setErrorEnabled(true);
+//        设置空白输入监听并提示
+        final EditText etEmail = textInputLayoutEmail.getEditText();
+        etEmail.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 0) {
+                    textInputLayoutEmail.setError("e-mail can't be null");
+                } else {
+                    textInputLayoutEmail.setError(null);
+                }
+            }
+        });
 
 //        建立Tab界面
         setupTabView();
+//        建立工具栏
+        setupToolbar();
 //        建立浮动按钮
         setupFloatActionButton();
     }
@@ -104,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
      */
     private void setupTabView() {
 //        ViewPager
-        viewPager = (ViewPager) this.findViewById(R.id.view_pager);
+        ViewPager mViewPager = (ViewPager) this.findViewById(R.id.view_pager);
 //        布局过滤器
         LayoutInflater mLayoutInflater = getLayoutInflater();
         viewPagerList.add(0, mLayoutInflater.inflate(R.layout.viewpager_red, null));
@@ -115,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
         titleList.add(1, "Tab Green");
         titleList.add(2, "Tab Blue");
 
-        viewPager.setAdapter(new PagerAdapter() {
+        mViewPager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
                 System.out.println("在GetCount...");
@@ -127,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
                 return view == o;
             }
 
-//            生成布局项目
+            //            生成布局项目
             @Override
             public Object instantiateItem(ViewGroup container, int position) {
                 View currView = viewPagerList.get(position);
@@ -135,7 +168,7 @@ public class MainActivity extends AppCompatActivity {
                 return currView;
             }
 
-//            销毁当前布局项目
+            //            销毁当前布局项目
             @Override
             public void destroyItem(ViewGroup container, int position, Object object) {
                 View currView = viewPagerList.get(position);
@@ -146,17 +179,52 @@ public class MainActivity extends AppCompatActivity {
             public CharSequence getPageTitle(int position) {
                 return titleList.get(position);
             }
+
+            @Override
+            public void setPrimaryItem(ViewGroup container, int position, Object object) {
+                super.setPrimaryItem(container, position, object);
+            }
         });
 //        Tab布局
 //        ***关联上Viewpager后Tab标签显示不出来***
         tabDesign = (TabLayout) findViewById(R.id.tab_design);
+        tabDesign.setOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+//            设置不同Tab选择的颜色，TabLayout中设置不能生效，需要在Viewpager里设置
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch (tab.getPosition()) {
+                    case 0:
+                        tabDesign.setTabTextColors(
+                                R.color.abc_background_cache_hint_selector_material_dark,
+                                R.color.bg_material_red);
+                    case 1:
+                        tabDesign.setTabTextColors(
+                                R.color.abc_background_cache_hint_selector_material_dark,
+                                R.color.bg_material_green);
+                    case 2:
+                        tabDesign.setTabTextColors(
+                                R.color.abc_background_cache_hint_selector_material_dark,
+                                R.color.bg_material_blue);
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
 /*        tab_design.addTab(tab_design.newTab().setText("Tab Red"));
-        Log.d(Tag, "Tab Red adding...");
+        Log.d(TAG, "Tab Red adding...");
         tab_design.addTab(tab_design.newTab().setText("Tab Green"));
         tab_design.addTab(tab_design.newTab().setText("Tab Blue"));*/
 
 //        Tab关联上ViewPager
-        tabDesign.setupWithViewPager(viewPager);
+        tabDesign.setupWithViewPager(mViewPager);
     }
 
     /**
@@ -190,13 +258,8 @@ public class MainActivity extends AppCompatActivity {
         actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-    }
-
-    /**
-     * 设置抽屉开关键纽
-     */
-    protected void setupToolbarDrawerToggle() {
-        mDrawerToggle = new ActionBarDrawerToggle(this, mDrawer,
+//     设置抽屉开关键纽（Toggle）
+        ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this, mDrawerLayout,
                 R.string.drawer_open, R.string.drawer_close) {
 
             public void onDrawerClosed(View view) {
@@ -207,7 +270,8 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(view, R.string.drawer_open, Snackbar.LENGTH_SHORT).show();
             }
         };
-        mDrawer.setDrawerListener(mDrawerToggle);
+        mDrawerLayout.setDrawerListener(mDrawerToggle);
+
     }
 
     /**
@@ -216,7 +280,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (isDrawerOpened()) {
-            mDrawer.closeDrawer(GravityCompat.START);
+            mDrawerLayout.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
@@ -224,7 +288,7 @@ public class MainActivity extends AppCompatActivity {
 
     //    判断抽屉是否打开
     protected boolean isDrawerOpened() {
-        return mDrawer != null && mDrawer.isDrawerOpen(GravityCompat.START);
+        return mDrawerLayout != null && mDrawerLayout.isDrawerOpen(GravityCompat.START);
     }
 
     //    基本菜单项
@@ -240,7 +304,7 @@ public class MainActivity extends AppCompatActivity {
 //        设置菜单按钮动作
         switch (item.getItemId()) {
             case android.R.id.home:     //  ‘home’ID表示Toggle
-                mDrawer.openDrawer(GravityCompat.START);
+                mDrawerLayout.openDrawer(GravityCompat.START);
             case R.id.action_settings:
                 return true;
         }
